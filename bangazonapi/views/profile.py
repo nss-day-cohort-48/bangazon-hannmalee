@@ -178,9 +178,6 @@ class Profile(ViewSet):
                 open_order = Order.objects.get(
                     customer=current_user, payment_type=None)
                 lineitems = OrderProduct.objects.filter(order=open_order)
-                lineitems = LineItemSerializer(
-                    lineitems, many=True, context={'request': request})
-
                 cart = {}
                 cart["order"] = OrderSerializer(open_order, many=False, context={
                                                 'request': request}).data
